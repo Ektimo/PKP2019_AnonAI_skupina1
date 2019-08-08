@@ -1,0 +1,19 @@
+FROM fnndsc/ubuntu-python3:latest
+ENV DEBIAN_FRONTEND=noninteractive
+MAINTAINER Tea Brasanac
+
+RUN apt-get update -y
+RUN apt-get install libxrender-dev libsm6 libxext6 python3-tk -y
+RUN python --version
+RUN apt install python3-pip -y
+RUN pip install opencv-python==4.0.0.21 numpy==1.14.6 mxnet scikit-learn matplotlib
+RUN pip install scikit-image
+
+
+
+RUN mkdir /workingDir
+COPY . /workingDir
+WORKDIR /workingDir
+CMD ["anonimizacijaPrvaSkupina/webcam_feed.py"]
+
+

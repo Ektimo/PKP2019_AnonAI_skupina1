@@ -1,0 +1,14 @@
+FROM ufoym/deepo:mxnet-py36-cu100
+ENV DEBIAN_FRONTEND=noninteractive
+MAINTAINER Tea Brasanac <tea.brasanac@ektimo.si>
+
+RUN apt-get update -y
+RUN apt-get install libxrender-dev libsm6 libxext6 python3-tk -y
+RUN pip install matplotlib numpy==1.14.6 opencv-python==4.0.0.21 scikit-learn scikit-image
+
+RUN mkdir /workingDir
+COPY . /workingDir
+WORKDIR /workingDir
+CMD ["python", "anonimizacijaPrvaSkupina/webcam_feed.py"]
+
+
